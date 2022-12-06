@@ -1,8 +1,5 @@
 require 'benchmark'
 
-# @x_min = @y_min = @z_min = 0
-# @x_max = @y_max = @z_max = 1
-
 @a = 0
 @b = 0.9
 @c = 1.5
@@ -73,27 +70,27 @@ def simplest_monte_carlo (a, b, c, d)
   sum / @quantity
 end
 
-def resMethodNeyman2 (x)
-  @W = 0
-  (1..@quantity).each { |i|
-    @Ti = trapezoidal_distribution(x, @a, @b, @c ,@d)
-    if @Ti > @W
-      @W = @Ti
-    end
-  }
-  while(true)
-    y1 = rand(0.to_f...x.to_f)
-    y2 = rand(0.to_f...x.to_f)
-    x = y1
-    y=@W*y2
-    if trapezoidal_distribution(x, @a, @b, @c ,@d) > y
-      return x
-    end
-  end
-end
+# def resMethodNeyman2 (x)
+#   @W = 0
+#   (1..@quantity).each { |i|
+#     @Ti = trapezoidal_distribution(x, @a, @b, @c ,@d)
+#     if @Ti > @W
+#       @W = @Ti
+#     end
+#   }
+#   while(true)
+#     y1 = rand(0.to_f...x.to_f)
+#     y2 = rand(0.to_f...x.to_f)
+#     x = y1
+#     y=@W*y2
+#     if trapezoidal_distribution(x, @a, @b, @c ,@d) > y
+#       return x
+#     end
+#   end
+# end
 
-@min = 0.1
-@max = 1
+# @min = 0.1
+# @max = 1
 
 
 file = File.new("./file.txt", "a:UTF-8")

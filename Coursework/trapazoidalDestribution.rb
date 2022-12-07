@@ -18,7 +18,7 @@ def trapezoidal_distribution (x, a, b, c, d)
   end
 end
 
-def resMethodNeyman (a, b, c ,d)
+def methodNeyman (a, b, c ,d)
   @W = 0
   (1..@quantity).each { |i|
     @Ti = trapezoidal_distribution(i / @quantity, a, b, c ,d)
@@ -93,16 +93,20 @@ end
 # @max = 1
 
 
-file = File.new("./file.txt", "a:UTF-8")
+resMethodNeyman = methodNeyman(@a, @b, @c, @d)
+resMethodMetropolis = methodMetropolis(@a, @b, @c, @d)
+resMethodInverseFunction = methodInverseFunction(@a, @b, @c, @d)
+resSimplest_monte_carlo = simplest_monte_carlo(@a, @b, @c, @d)
+file = File.new("file.txt", "a:UTF-8")
 file.print("Умови інтегрування наступні: \n")
 file.print("Область інтегрування: #{@a} <= #{@b} <= #{@c} <= #{@d} \n")
 file.print("Кількість обчислень для статистичних методів: #{@quantity} \n")
-file.print("Метод Неймана: #{resMethodNeyman(@a, @b, @c, @d)}\n")
-file.print("Метод Метрополісу: #{methodMetropolis(@a, @b, @c, @d)}\n")
-file.print("Метод зворотної функції: #{methodInverseFunction(@a, @b, @c, @d)}\n")
-file.print("Найпростіший метод Монте Карло: #{simplest_monte_carlo(@a, @b, @c, @d)}\n")
+file.print("Метод Неймана: #{resMethodNeyman}\n")
+file.print("Метод Метрополісу: #{resMethodMetropolis}\n")
+file.print("Метод зворотної функції: #{resMethodInverseFunction}\n")
+file.print("Найпростіший метод Монте Карло: #{resSimplest_monte_carlo}\n")
 file.print("Крок для детерміністичних методів: #{@step}\n")
-file.print("Час обчислення (1): #{resMethodNeyman(@a, @b, @c, @d).real} c\n")
+file.print("Час обчислення (1): #{methodNeyman(@a, @b, @c, @d).real} c\n")
 file.print("Час обчислення (2): #{methodMetropolis(@a, @b, @c, @d).real} c\n")
 file.print("Час обчислення (3): #{methodInverseFunction(@a, @b, @c, @d).real} c\n")
 file.print("Час обчислення (4): #{simplest_monte_carlo(@a, @b, @c, @d).real} c\n")
@@ -112,13 +116,13 @@ puts "Умови інтегрування наступні: \n
 Кількість обчислень для статистичних методів: #{@quantity}"
 
 
-puts "Метод Неймана: #{resMethodNeyman(@a, @b, @c, @d)}"
-puts "Метод Метрополісу: #{methodMetropolis(@a, @b, @c, @d)}"
-puts "Метод зворотної функції: #{methodInverseFunction(@a, @b, @c, @d)}"
-puts "Найпростіший метод Монте Карло: #{simplest_monte_carlo(@a, @b, @c, @d)}"
+puts "Метод Неймана: #{resMethodNeyman}"
+puts "Метод Метрополісу: #{resMethodMetropolis}"
+puts "Метод зворотної функції: #{resMethodInverseFunction}"
+puts "Найпростіший метод Монте Карло: #{resSimplest_monte_carlo}"
 
 puts "Крок для детерміністичних методів: #{@step}"
-puts "Час обчислення (1): #{resMethodNeyman(@a, @b, @c, @d).real} c"
+puts "Час обчислення (1): #{methodNeyman(@a, @b, @c, @d).real} c"
 puts "Час обчислення (2): #{methodMetropolis(@a, @b, @c, @d).real} c"
 puts "Час обчислення (3): #{methodInverseFunction(@a, @b, @c, @d).real} c"
 puts "Час обчислення (4): #{simplest_monte_carlo(@a, @b, @c, @d).real} c"

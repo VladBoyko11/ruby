@@ -98,7 +98,7 @@ res_method_metropolis = method_metropolis(@a, @b, @c, @d)
 res_method_inverse_function = method_inverse_function(@a, @b, @c, @d)
 res_simplest_monte_carlo = simplest_monte_carlo(@a, @b, @c, @d)
 
-file = File.new("./Coursework/file.txt", "a:UTF-8")
+file = File.new("#{__dir__}/file.txt", "a:UTF-8")
 file.print("Умови інтегрування наступні: \n")
 file.print("Область інтегрування: #{@a} <= #{@b} <= #{@c} <= #{@d} \n")
 file.print("Кількість обчислень для статистичних методів: #{@quantity} \n")

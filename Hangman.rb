@@ -1,39 +1,41 @@
-words = Array["application", "programming", "developer", "ruby", "interface"]
-selectedWord = words[rand(words.length)].split('')
+words = Array["application", "programming", "developer", "ruby", "interface", "array", "frontend"]
+selected_word = words[rand(words.length)].split('')
 
-correctLetters = Array.new(selectedWord.length, '*')
-puts selectedWord.join(' ')
-wrongLetters = Array[]
+correct_letters = Array.new(selected_word.length, '*')
+puts selected_word.join(' ')
+wrong_letters = Array[]
 
-while wrongLetters.length < 6 do
+while wrong_letters.length < 6 do
   puts 'Введите букву'
   letter = STDIN.gets.chomp.downcase
-  if letter.length > 1 and /[a-z]/.match?(letter)
+  if letter.length > 1 || !/[a-z]/.match?(letter)
     puts 'Введите одну букву!'
     next
-  elsif correctLetters.include?(letter) || wrongLetters.include?(letter)
+  elsif correct_letters.include?(letter) || wrong_letters.include?(letter)
     puts 'Вы уже вводили эту букву'
     next
   end
 
-  if selectedWord.include?(letter)
-    (0..selectedWord.length).each { |i|
-      if selectedWord[i] == letter
-        correctLetters[i] = letter
+  if selected_word.include?(letter)
+    (0..selected_word.length).each { |i|
+      if selected_word[i] == letter
+        correct_letters[i] = letter
       end
     }
-    if selectedWord.join('') == correctLetters.join('')
-      puts "Вы отгадали слово! Это было слово #{ correctLetters.join('') }"
+    if selected_word.join('') == correct_letters.join('')
+      puts "Вы отгадали слово! Это было слово #{ correct_letters.join('') }"
       return
     end
-    puts correctLetters.join(' ')
+    puts correct_letters.join(' ')
   else
-    wrongLetters.push(letter)
-    if wrongLetters.length == 6
-      puts "Вы проиграли. Правильное слово - #{selectedWord.join('')}"
+    wrong_letters.push(letter)
+    if wrong_letters.length == 6
+      puts "Вы проиграли. Правильное слово - #{selected_word.join('')}"
+      puts 'Неподходящие буквы'
+      puts wrong_letters.join(' ')
     else
       puts 'Неподходящие буквы'
-      puts wrongLetters.join(' ')
+      puts wrong_letters.join(' ')
     end
   end
 end

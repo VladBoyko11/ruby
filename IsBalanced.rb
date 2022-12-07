@@ -1,30 +1,30 @@
-def isBalanced (str = '')
-  startStr = "{(["
+def is_balanced (str = '')
+  start_str = "{(["
   endStr = "})]"
   queue = Array[]
-  map = {
+  hash = {
   "}"=> "{",
   ")"=> "(",
   "]"=> "[",
   }
   str.split('').each do |char|
-    if startStr.include?(char)
+    if start_str.include?(char)
       queue.push(char)
     elsif endStr.include?(char)
-      puts queue.join(' ')
+      # puts queue.join(' ')
       last = queue.pop()
-      puts queue.join(' ')
-      puts map[char]
-      if map[char] != last
+      # puts queue.join(' ')
+      # puts hash[char]
+      if hash[char] != last
         return false
       end
     end
   end
-  return queue.length == 0
+  queue.length == 0
 end
 
-puts isBalanced("(x+y) - 2 + (5)") # true
-puts isBalanced("((x+y) - 2 + (5)") # false
-puts isBalanced("(){}[]") # true
-puts isBalanced("[(])") # false
-puts isBalanced("[({})](]") # false
+puts is_balanced("(x+y) - 2 + (5)") # true
+puts is_balanced("((x+y) - 2 + (5)") # false
+puts is_balanced("(){}[]") # true
+puts is_balanced("[(])") # false
+puts is_balanced("[({})](]") # false
